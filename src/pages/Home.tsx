@@ -1,5 +1,4 @@
 import MusicCard from "../components/MusicCard";
-import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { FaSpinner } from "react-icons/fa";
 import { useState } from "react";
 import { useQuery } from "react-query";
@@ -13,7 +12,6 @@ const Home = () => {
     setSearchValue(event.target.value);
   };
 
-  // const debounceSearchValue = useDebounce(searchValue, 500);
   const { data, isLoading } = useQuery(
     ["tracks", searchValue],
     () => searchArtist(searchValue),
@@ -21,7 +19,7 @@ const Home = () => {
   );
 
   return (
-    <section className="w-screen">
+    <section className="max-w-full">
       <Header />
       <div className="w-full p-2 border-none bg-cat-crust">
         <div className="container mx-auto p-2">
@@ -44,7 +42,7 @@ const Home = () => {
               className="animate-spin fill-cat-mauve mx-auto text-center"
             />
           ) : (
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="flex flex-col md:grid md:grid-cols-3 gap-6">
               {data?.data?.map((track) => (
                 <MusicCard key={track.id} track={track} />
               ))}
