@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Track } from "../models/Data";
+import { Album, Track } from "../models/Data";
 
 const BASE_URL = "https://deezerdevs-deezer.p.rapidapi.com";
 
@@ -16,3 +16,6 @@ export const searchArtist = (artist: string) =>
   searchApi
     .get<Track[]>(`/search?q=${artist}`)
     .then((response) => response.data);
+
+export const getAlbum = (albumId: string | undefined) =>
+  searchApi.get<Album>(`/album/${albumId}`).then((response) => response.data);

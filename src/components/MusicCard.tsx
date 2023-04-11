@@ -1,23 +1,36 @@
 import React from "react";
-import { MdRefresh } from "react-icons/md";
+import { Link } from "react-router-dom";
 import { MusicCardProps } from "../models/Props";
 
 const MusicCard: React.FC<MusicCardProps> = ({ track }) => {
   return (
-    <div className="relative flex-wrap md:flex-col rounded-md shadow-lg">
+    <div
+      className="relative bg-cat-overlay0 bg-opacity-25 backdrop-blur-lg
+      group rounded-lg shadow-lg transition ease-in-out delay-150 duration-300
+      hover:scale-105"
+    >
       <div className="mx-auto">
+        {/* <h3 className="absolute top-0 p-2 text-cat-surface2 font-light delay-150 duration-300 scale-0 group-hover:scale-100"> */}
+        {/*   {track.album.title} */}
+        {/* </h3> */}
         <img
-          className="w-full rounded-t-md"
+          className="p-2.5 w-full delay-150 duration-300 group-hover:rounded-t-lg group-hover:p-0"
           src={track.album.cover_xl}
           alt={track.title}
         />
       </div>
-      <div className="p-1 rounded-b-md bg-gray-900 bg-opacity-80">
-        <h2 className="truncate md:text-md text-slate-200 dark:text-white font-medium">
+      <div className="mx-auto p-1.5">
+        <h2 className="truncate font-semibold text-lg text-cat-subtext1">
           {track.title}
         </h2>
-        <h3 className="text-slate-400 font-thin">{track.artist.name}</h3>
-        <h3 className="text-slate-400 font-thin">{track.album.title}</h3>
+        <h3 className="truncate mt-1 text-cat-subtext0 font-light">
+          <Link to={`/album/${track.album.id}`}>
+            {track.album.title}
+          </Link>
+        </h3>
+        <h3 className="truncate mt-1 text-cat-subtext0 font-light">
+          {track.artist.name}
+        </h3>
       </div>
     </div>
   );
