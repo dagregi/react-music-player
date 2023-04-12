@@ -5,8 +5,7 @@ import { getArtist } from "../api/services";
 const ArtistPage = () => {
   const { artistId } = useParams();
   const { data } = useQuery(["artist", artistId], () => getArtist(artistId));
-  const top = useQuery(["top"], () => getArtist(`${artistId}/top`));
-  console.log(top.data);
+
   return (
     <section className="bg-cat-crust">
       <div className="flex flex-col max-w-full h-auto bg-gradient-to-b from-cat-surface2 to-transparent">

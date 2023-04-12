@@ -1,31 +1,11 @@
 import { useQuery } from "react-query";
 import { Link, useParams } from "react-router-dom";
-import { getAlbum } from "../api/api";
+import { getAlbum } from "../api/services";
+import { convertTime } from "../utils";
 
 const AlbumPage = () => {
   const { albumId } = useParams();
   const { data } = useQuery(["album", albumId], () => getAlbum(albumId));
-
-  const convert = (duration: number) => {
-    const hrs = ~~(duration / 3600);
-    const mins = ~~((duration % 3600) / 60);
-    const secs = ~~duration % 60;
-
-    let ret = "";
-
-    if (hrs > 1) {
-      ret += "" + hrs + " hours ";
-    } else if (hrs === 1) {
-      ret += "" + hrs + " hour ";
-      ret += "" + mins + " min ";
-      ret += "" + secs + " sec ";
-    } else if (hrs === 0) {
-      ret += "" + mins + ":" + (secs < 10 ? "0" : "");
-      ret += "" + secs;
-    }
-
-    return ret;
-  };
 
   return (
     <section className="bg-cat-crust text-cat-text">
@@ -57,28 +37,26 @@ const AlbumPage = () => {
                 }`}
             </h3>
             <h3 className="text-xs text-cat-overlay1">
-              {convert(data?.duration)}
+              {convertTime(data?.duration)}
             </h3>
           </div>
         </div>
       </div>
-      <div className="bg-gradient-to-bl from-cat-lavender to-cat-mauve mx-2 mt-2 w-4 h-1 rounded-lg" />
-      <div className="mx-auto p-4 items-center">
-        <div className="mx-auto md:gap-4 text-sm md:text-2xl items-center">
-          {data?.tracks?.data?.map((track, i) => (
-            <div key={i} className="flex flex-row gap-3 mx-auto mt-3">
-              <p className="text-cat-overlay0 font-semibold mx-2">{++i}</p>
-              <div className="flex flex-col">
-                <p className="tracking-tight font-semibold text-cat-subtext1">
-                  {track.title}
-                </p>
-                <h2 className="font-light text-cat-subtext0">
-                  {convert(track.duration)}
-                </h2>
-              </div>
+      <div className="bg-gradient-to-br from-cat-pink to-cat-lavender mx-2 mt-2 w-4 h-1 rounded-lg" />
+      <div className="mx-auto p-3 text-sm md:text-2xl items-center">
+        {data?.tracks?.data?.map((track, i) => (
+          <div key={track.id} className="flex flex-row gap-3 mx-auto mt-3">
+            <p className="text-cat-overlay0 font-semibold mx-2">{++i}</p>
+            <div className="flex flex-col">
+              <p className="tracking-tight font-semibold text-cat-subtext1">
+                {track.title}
+              </p>
+              <h2 className="font-light text-cat-subtext0">
+                {convertTime(track.duration)}
+              </h2>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </section>
   );
