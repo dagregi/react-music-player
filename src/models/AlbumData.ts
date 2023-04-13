@@ -1,3 +1,5 @@
+import { CopyrightItem, ExternalUrls, Source } from "./SharedTypes";
+
 export type AlbumData = {
   albums: Album[];
 };
@@ -6,12 +8,12 @@ export type Album = {
   album_group: string;
   album_type: string;
   artists: Artist[];
-  copyrights: Copyright[];
+  copyrights: CopyrightItem[];
   external_ids: Externalids;
   external_urls: ExternalUrls;
   genres: any[];
   id: string;
-  images: Image[];
+  images: Source[];
   is_playable: boolean;
   label: string;
   name: string;
@@ -32,35 +34,20 @@ export type Artist = {
   uri: string;
 };
 
-export type ExternalUrls = {
-  spotify: string;
-};
-
 export enum ArtistType {
   Artist = "artist",
 }
-
-export type Copyright = {
-  text: string;
-  type: string;
-};
 
 export type Externalids = {
   upc: string;
 };
 
-export type Image = {
-  height: number;
-  url: string;
-  width: number;
-};
-
 export type Tracks = {
   items: Item[];
   limit: number;
-  next: null;
+  next: null | undefined;
   offset: number;
-  previous: null;
+  previous: null | undefined;
   total: number;
 };
 

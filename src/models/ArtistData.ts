@@ -1,3 +1,5 @@
+import { ExternalUrls, Source } from "./SharedTypes";
+
 export type ArtistData = {
   artists: Artist[];
 };
@@ -7,24 +9,14 @@ export type Artist = {
   followers: Followers;
   genres: string[];
   id: string;
-  images: Image[];
+  images: Source[];
   name: string;
   popularity: number;
   type: string;
   uri: string;
 };
 
-export type ExternalUrls = {
-  spotify: string;
-};
-
 export type Followers = {
-  href: null;
+  href: null | undefined;
   total: number;
-};
-
-export type Image = {
-  height: number;
-  url: string;
-  width: number;
 };

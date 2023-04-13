@@ -1,3 +1,18 @@
+import { Artists } from "./SearchResult";
+import {
+  ContentRating,
+  Copyright,
+  CoverArt,
+  DateClass,
+  Duration,
+  PagingInfo,
+  Playability,
+  Profiles,
+  SharingInfo,
+  Source,
+  Visuals,
+} from "./SharedTypes";
+
 export type ArtistOverview = {
   data: Data;
   extensions: Extensions;
@@ -51,33 +66,9 @@ export type PurpleItem = {
   date: PurpleDate;
   coverArt: CoverArt;
   tracks: Tracks;
-  label: Name;
+  label: string;
   playability: Playability;
   sharingInfo: SharingInfo;
-};
-
-export type Copyright = {
-  items: CopyrightItem[];
-};
-
-export type CopyrightItem = {
-  type: PurpleType;
-  text: string;
-};
-
-export enum PurpleType {
-  C = "C",
-  P = "P",
-}
-
-export type CoverArt = {
-  sources: ItemSource[];
-};
-
-export type ItemSource = {
-  url: string;
-  width: number | null;
-  height: number | null;
 };
 
 export type PurpleDate = {
@@ -90,24 +81,6 @@ export type PurpleDate = {
 export enum Precision {
   Day = "DAY",
 }
-
-export enum Name {
-  ShadowOfIntent = "Shadow of Intent",
-}
-
-export type Playability = {
-  playable: boolean;
-  reason: Reason;
-};
-
-export enum Reason {
-  Playable = "PLAYABLE",
-}
-
-export type SharingInfo = {
-  shareId: string;
-  shareUrl: string;
-};
 
 export type Tracks = {
   totalCount: number;
@@ -125,15 +98,11 @@ export type Latest = {
   name: string;
   type: LatestType;
   copyright: Copyright;
-  date: LatestDate;
+  date: DateClass;
   coverArt: CoverArt;
   tracks: Tracks;
-  label: Name;
+  label: string;
   playability: Playability;
-};
-
-export type LatestDate = {
-  year: number;
 };
 
 export type TopTracks = {
@@ -154,47 +123,8 @@ export type Track = {
   duration: Duration;
   playability: Playability;
   contentRating: ContentRating;
-  artists: TrackArtists;
-  album: Album;
-};
-
-export type Album = {
-  uri: string;
-  coverArt: AlbumCoverArt;
-};
-
-export type AlbumCoverArt = {
-  sources: PurpleSource[];
-};
-
-export type PurpleSource = {
-  url: string;
-};
-
-export type TrackArtists = {
-  items: FluffyItem[];
-};
-
-export type FluffyItem = {
-  uri: string;
-  profile: UserLocation;
-};
-
-export type UserLocation = {
-  name: string;
-};
-
-export type ContentRating = {
-  label: Label;
-};
-
-export enum Label {
-  Explicit = "EXPLICIT",
-  None = "NONE",
-}
-
-export type Duration = {
-  totalMilliseconds: number;
+  artists: Artists;
+  album: Albums;
 };
 
 export type Goods = {
@@ -203,7 +133,7 @@ export type Goods = {
 };
 
 export type Events = {
-  userLocation: UserLocation;
+  userLocation: Profile;
   concerts: Concerts;
 };
 
@@ -233,12 +163,8 @@ export type PurpleArtists = {
 export type RelatedArtistsItem = {
   uri: string;
   id: string;
-  profile: UserLocation;
-  visuals?: ItemVisuals;
-};
-
-export type ItemVisuals = {
-  avatarImage: CoverArt;
+  profile: Profile;
+  visuals?: Visuals;
 };
 
 export type FluffyDate = {
@@ -263,17 +189,13 @@ export type PartnerLinksItem = {
 
 export type Venue = {
   name: string;
-  location: UserLocation;
+  location: Profile;
   coordinates: Coordinates;
 };
 
 export type Coordinates = {
   latitude: number;
   longitude: number;
-};
-
-export type PagingInfo = {
-  limit: number;
 };
 
 export type Merch = {
@@ -289,12 +211,12 @@ export type MerchItem = {
 };
 
 export type Profile = {
-  name: Name;
-  verified: boolean;
-  pinnedItem: null;
-  biography: Biography;
-  externalLinks: ExternalLinks;
-  playlists: Albums;
+  name: string;
+  verified?: boolean;
+  pinnedItem?: null | undefined;
+  biography?: Biography;
+  externalLinks?: ExternalLinks;
+  playlists?: Albums;
 };
 
 export type Biography = {
@@ -335,9 +257,9 @@ export type TentacledItem = {
   uri: string;
   id: string;
   name: string;
-  artists: TrackArtists;
+  artists: Artists;
   coverArt: CoverArt;
-  date: LatestDate;
+  date: DateClass;
   sharingInfo: SharingInfo;
 };
 
@@ -349,7 +271,7 @@ export type DiscoveredOn = {
 export type DiscoveredOnItem = {
   uri: string;
   id: string;
-  owner: UserLocation;
+  owner: Profiles;
   name: string;
   description: string;
   images: Images;
@@ -390,7 +312,7 @@ export type ArtistVisuals = {
 };
 
 export type RImage = {
-  sources: ItemSource[];
+  sources: Source[];
   extractedColors: ExtractedColors;
 };
 
