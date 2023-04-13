@@ -1,12 +1,12 @@
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import { getArtist, getTopSongs } from "../api/services";
+import { getArtists, getArtistOverview } from "../api/services";
 import TopTracks from "../components/TopTracks";
 
 const ArtistPage = () => {
   const { artistId } = useParams();
-  const { data } = useQuery(["artist", artistId], () => getArtist(artistId));
-  const topSongs = useQuery(["top"], () => getTopSongs(artistId));
+  const { data } = useQuery(["artist", artistId], () => getArtists(artistId));
+  const topSongs = useQuery(["top"], () => getArtistOverview(artistId));
   return (
     <section className="bg-cat-crust">
       <div className="flex flex-col max-w-full h-auto bg-gradient-to-b from-cat-surface2 to-transparent">

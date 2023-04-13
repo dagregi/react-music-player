@@ -1,29 +1,34 @@
 import axios from "axios";
-import { Album, Artist, Track } from "../models/Data";
 
 export const apiService = axios.create({
   method: "GET",
-  baseURL: import.meta.env.VITE_APP_BASE_URL,
+  baseURL: "https://spotify23.p.rapidapi.com/search/",
   headers: {
     "X-RapidAPI-Key": import.meta.env.VITE_APP_API_KEY,
-    "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
+    "X-RapidAPI-Host": "spotify23.p.rapidapi.com",
   },
 });
 
-export const searchTrack = (artist: string) =>
+export const searchAlbum = (album: string) =>
   apiService
-    .get<Track[]>(`/search?q=${artist}`)
+    .get(`/search/?q=${album}&type=albums`)
     .then((response) => response.data);
 
-export const getAlbum = (albumId: string | undefined) =>
-  apiService.get<Album>(`/album/${albumId}`).then((response) => response.data);
-
-export const getArtist = (artistId: string | undefined) =>
+export const searchArtist = (artist: string) =>
   apiService
-    .get<Artist>(`/artist/${artistId}`)
+    .get(`/search/?q=${artist}&type=artists`)
     .then((response) => response.data);
 
-export const getTopSongs = (artistId: string | undefined) =>
+export const searchTrack = (track: string) =>
   apiService
-    .get<Track[]>(`/artist/${artistId}/top?limit=50`)
-    .then((res) => res.data);
+    .get(`/search/?q=${track}&type=tracks`)
+    .then((response) => response.data);
+
+export const getAlbums = (albumId: string | undefined) =>
+  apiService.get(`/albums/?ids=${albumId}`).then((response) => response.data);
+
+export const getArtists = (artistId: string | undefined) =>
+  apiService.get(`/artists/?ids=${artistId}`).then((response) => response.data);
+
+export const getArtistOverview = (artistId: string | undefined) =>
+  apiService.get(`/artist_overview/?id=${artistId}`).then((res) => res.data);

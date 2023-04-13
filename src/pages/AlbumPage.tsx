@@ -1,11 +1,11 @@
 import { useQuery } from "react-query";
 import { Link, useParams } from "react-router-dom";
-import { getAlbum } from "../api/services";
+import { getAlbums } from "../api/services";
 import { convertTime } from "../utils";
 
 const AlbumPage = () => {
   const { albumId } = useParams();
-  const { data } = useQuery(["album", albumId], () => getAlbum(albumId));
+  const { data } = useQuery(["album", albumId], () => getAlbums(albumId));
 
   return (
     <section className="bg-cat-crust text-cat-text">
@@ -31,10 +31,11 @@ const AlbumPage = () => {
           </div>
           <div className="flex gap-1 p-1">
             <h2 className="text-xs text-cat-overlay1">
-              {`${data?.nb_tracks > 1
+              {`${
+                data?.nb_tracks > 1
                   ? data?.nb_tracks + " songs,"
                   : data?.nb_tracks + " song,"
-                }`}
+              }`}
             </h2>
             <h3 className="text-xs text-cat-overlay1">
               {convertTime(data?.duration)}
