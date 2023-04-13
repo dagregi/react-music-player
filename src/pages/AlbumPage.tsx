@@ -12,7 +12,7 @@ const AlbumPage = () => {
       <div className="flex flex-col max-w-full h-auto bg-gradient-to-b from-cat-surface1 to-transparent">
         <img
           className="w-32 h-32 mx-auto mt-3"
-          src={data?.cover_xl}
+          src={data?.cover_big}
           alt={data?.title}
         />
         <div className="p-2">
@@ -22,20 +22,20 @@ const AlbumPage = () => {
           <div className="p-1 flex flex-row gap-1">
             <img
               className="w-7 h-7 overflow-hidden rounded-full"
-              src={data?.artist.picture_xl}
-              alt={data?.artist.name}
+              src={data?.artist?.picture_medium}
+              alt={data?.artist?.name}
             />
-            <Link to={`/artist/${data?.artist.id}`}>
-              <p className="font-light text-cat-text">{data?.artist.name}</p>
+            <Link to={`/artist/${data?.artist?.id}`}>
+              <p className="font-light text-cat-text">{data?.artist?.name}</p>
             </Link>
           </div>
           <div className="flex gap-1 p-1">
-            <h3 className="text-xs text-cat-overlay1">
+            <h2 className="text-xs text-cat-overlay1">
               {`${data?.nb_tracks > 1
                   ? data?.nb_tracks + " songs,"
                   : data?.nb_tracks + " song,"
                 }`}
-            </h3>
+            </h2>
             <h3 className="text-xs text-cat-overlay1">
               {convertTime(data?.duration)}
             </h3>

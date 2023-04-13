@@ -22,3 +22,8 @@ export const getArtist = (artistId: string | undefined) =>
   apiService
     .get<Artist>(`/artist/${artistId}`)
     .then((response) => response.data);
+
+export const getTopSongs = (artistId: string | undefined) =>
+  apiService
+    .get<Track[]>(`/artist/${artistId}/top?limit=50`)
+    .then((res) => res.data);

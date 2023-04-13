@@ -20,10 +20,10 @@ const MusicCard: React.FC<MusicCardProps> = ({ track }) => {
         <h2 className="truncate font-semibold text-lg text-cat-subtext1">
           {track.title}
         </h2>
-        <h3 className="truncate mt-1 text-cat-subtext0 font-light">
+        <h3 className="truncate mt-2 text-cat-subtext0 font-light">
           <Link to={`/album/${track.album.id}`}>{track.album.title}</Link>
         </h3>
-        <h3 className="truncate mt-1 text-cat-subtext0 font-light">
+        <h3 className="truncate mt-2 text-cat-subtext0 font-light">
           <Link to={`/artist/${track.artist.id}`}>{track.artist.name}</Link>
         </h3>
       </div>
