@@ -1,11 +1,9 @@
-import { Track } from "./Data";
-
 export type MusicCardProps = {
-  track: Track;
+  track: any;
 };
 
 export type TopTracksProps = {
-  track: Track;
+  track: any;
   index: number;
 };
 

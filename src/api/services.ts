@@ -1,4 +1,8 @@
 import axios from "axios";
+import { AlbumData } from "../models/AlbumData";
+import { ArtistData } from "../models/ArtistData";
+import { ArtistOverview } from "../models/ArtistOverview";
+import { SearchResult } from "../models/SearchResult";
 
 export const apiService = axios.create({
   method: "GET",
@@ -9,26 +13,34 @@ export const apiService = axios.create({
   },
 });
 
-export const searchAlbum = (album: string) =>
+export const searchAlbum = (album: string): Promise<SearchResult> =>
   apiService
-    .get(`/search/?q=${album}&type=albums`)
+    .get<SearchResult>(`/search/?q=${album}&type=albums`)
     .then((response) => response.data);
 
-export const searchArtist = (artist: string) =>
+export const searchArtist = (artist: string): Promise<SearchResult> =>
   apiService
-    .get(`/search/?q=${artist}&type=artists`)
+    .get<SearchResult>(`/search/?q=${artist}&type=artists`)
     .then((response) => response.data);
 
-export const searchTrack = (track: string) =>
+export const searchTrack = (track: string): Promise<SearchResult> =>
   apiService
-    .get(`/search/?q=${track}&type=tracks`)
+    .get<SearchResult>(`/search/?q=${track}&type=tracks`)
     .then((response) => response.data);
 
-export const getAlbums = (albumId: string | undefined) =>
-  apiService.get(`/albums/?ids=${albumId}`).then((response) => response.data);
+export const getAlbums = (albumId: string | undefined): Promise<AlbumData> =>
+  apiService
+    .get<AlbumData>(`/albums/?ids=${albumId}`)
+    .then((response) => response.data);
 
-export const getArtists = (artistId: string | undefined) =>
-  apiService.get(`/artists/?ids=${artistId}`).then((response) => response.data);
+export const getArtists = (artistId: string | undefined): Promise<ArtistData> =>
+  apiService
+    .get<ArtistData>(`/artists/?ids=${artistId}`)
+    .then((response) => response.data);
 
-export const getArtistOverview = (artistId: string | undefined) =>
-  apiService.get(`/artist_overview/?id=${artistId}`).then((res) => res.data);
+export const getArtistOverview = (
+  artistId: string | undefined
+): Promise<ArtistOverview> =>
+  apiService
+    .get<ArtistOverview>(`/artist_overview/?id=${artistId}`)
+    .then((res) => res.data);
