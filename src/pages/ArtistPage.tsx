@@ -1,11 +1,12 @@
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import { getArtist } from "../api/services";
+import { getArtist, getTopSongs } from "../api/services";
+import TopTracks from "../components/TopTracks";
 
 const ArtistPage = () => {
   const { artistId } = useParams();
   const { data } = useQuery(["artist", artistId], () => getArtist(artistId));
-
+  const topSongs = useQuery(["top"], () => getTopSongs(artistId));
   return (
     <section className="bg-cat-crust">
       <div className="flex flex-col max-w-full h-auto bg-gradient-to-b from-cat-surface2 to-transparent">
@@ -25,7 +26,11 @@ const ArtistPage = () => {
         Top tracks
       </h1>
       <div className="bg-gradient-to-br from-cat-pink to-cat-lavender mx-2 mt-2 w-4 h-1 rounded-lg" />
-      <div>{/* TODO: Add top songs for the artist */}</div>
+      <div className="flex flex-col p-2">
+        {topSongs.data?.data?.slice(0, 10).map((track, i) => (
+          <TopTracks key={track.id} track={track} index={i} />
+        ))}
+      </div>
       <h1 className="text-cat-lavender font-semibold p-1 mt-4 text-2xl">
         Popular albums
       </h1>
