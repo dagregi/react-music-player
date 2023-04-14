@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 
-export const convertTime = (duration: number) => {
+export const convertTime = (miliseconds: number) => {
+  const duration = ~~(miliseconds / 1000);
+
   const hrs = ~~(duration / 3600);
   const mins = ~~((duration % 3600) / 60);
   const secs = ~~duration % 60;
