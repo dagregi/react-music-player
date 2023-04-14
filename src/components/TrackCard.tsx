@@ -1,8 +1,7 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import { MusicCardProps } from "../models/Props";
+import { TrackCardProps } from "../models/Props";
 
-const MusicCard: React.FC<MusicCardProps> = ({ track }) => {
+const TrackCard = ({ track }: TrackCardProps) => {
   return (
     <div
       className="bg-cat-overlay0 bg-opacity-25 backdrop-blur-sm
@@ -12,23 +11,27 @@ const MusicCard: React.FC<MusicCardProps> = ({ track }) => {
       <div className="mx-auto">
         <img
           className="p-2.5 delay-150 duration-300 group-hover:rounded-t-lg group-hover:p-0"
-          src={track.album.cover_xl}
-          alt={track.title}
+          src={track?.albumOfTrack?.coverArt?.sources?.at(2)?.url}
+          alt={track?.name}
         />
       </div>
       <div className="mx-auto p-1.5">
         <h2 className="truncate font-semibold text-lg text-cat-subtext1">
-          {track.title}
+          {track?.name}
         </h2>
         <h3 className="truncate mt-2 text-cat-subtext0 font-light">
-          <Link to={`/album/${track.album.id}`}>{track.album.title}</Link>
+          <Link to={`/album/${track?.albumOfTrack?.id}`}>
+            {track.albumOfTrack.name}
+          </Link>
         </h3>
         <h3 className="truncate mt-2 text-cat-subtext0 font-light">
-          <Link to={`/artist/${track.artist.id}`}>{track.artist.name}</Link>
+          <Link to={`/artist/${track?.artists?.items?.at(0)?.uri?.slice(15)}`}>
+            {track?.artists?.items?.at(0)?.profile?.name}
+          </Link>
         </h3>
       </div>
     </div>
   );
 };
 
-export default MusicCard;
+export default TrackCard;
