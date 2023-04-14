@@ -2,6 +2,7 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { getArtists, getArtistOverview } from "../api/services";
 import TopTracks from "../components/TopTracks";
+import AlbumCard from "../components/AlbumCard";
 
 const ArtistPage = () => {
   const { artistId } = useParams();
@@ -35,7 +36,16 @@ const ArtistPage = () => {
         Popular albums
       </h1>
       <div className="bg-gradient-to-br from-cat-pink to-cat-lavender mx-2 mt-2 w-4 h-1 rounded-lg" />
-      <div>{/* TODO: Add popular albums display */}</div>
+      <div className="flex flex-nowrap items-center overflow-x-auto space-x-8 scroll-smooth snap-x snap-mandatory w-full mb-8 px-4 py-5">
+        {data?.data?.artist?.discography?.popularReleases?.items?.map(
+          (album) => (
+            <AlbumCard
+              key={album?.releases?.items?.at(0)?.id}
+              album={album?.releases?.items?.at(0)}
+            />
+          )
+        )}
+      </div>
     </section>
   );
 };

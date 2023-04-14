@@ -50,20 +50,20 @@ export type Albums = {
 };
 
 export type AlbumsItem = {
-  releases: PurpleReleases;
+  releases: AlbumReleases;
 };
 
-export type PurpleReleases = {
-  items: PurpleItem[];
+export type AlbumReleases = {
+  items: AlbumItem[];
 };
 
-export type PurpleItem = {
+export type AlbumItem = {
   id: string;
   uri: string;
   name: string;
   type: LatestType;
   copyright: Copyright;
-  date: PurpleDate;
+  date: Date;
   coverArt: CoverArt;
   tracks: Tracks;
   label: string;
@@ -71,7 +71,7 @@ export type PurpleItem = {
   sharingInfo: SharingInfo;
 };
 
-export type PurpleDate = {
+export type Date = {
   year: number;
   month: number;
   day: number;

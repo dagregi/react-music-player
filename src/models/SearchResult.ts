@@ -18,24 +18,32 @@ export type SearchResult = {
 
 export type Albums = {
   totalCount?: number;
-  items: Item[];
+  items: AlbumItem[];
   pagingInfo?: PagingInfo;
 };
 
 export type Artists = {
   totalCount?: number;
-  items: Item[];
+  items: ArtistItem[];
   pagingInfo?: PagingInfo;
 };
 
 export type Tracks = {
   totalCount: number;
-  items: Item[];
+  items: TrackItem[];
   pagingInfo: PagingInfo;
 };
 
-export type Item = {
-  data: ArtistData | AlbumData | TrackData;
+export type AlbumItem = {
+  data: AlbumData;
+};
+
+export type ArtistItem = {
+  data: ArtistData;
+};
+
+export type TrackItem = {
+  data: TrackData;
 };
 
 export type AlbumData = {
