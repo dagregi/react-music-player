@@ -1,9 +1,10 @@
-import MusicCard from "../components/MusicCard";
 import { FaSpinner } from "react-icons/fa";
 import { useState } from "react";
 import { useQuery } from "react-query";
-import { searchTrack } from "../api/services";
+import { searchArtist, searchTrack } from "../api/services";
 import { useDebounce } from "../utils";
+import TrackCard from "../components/TrackCard";
+import ArtistCard from "../components/ArtistCard";
 
 const Search = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -15,7 +16,7 @@ const Search = () => {
 
   const { data, isLoading } = useQuery(
     ["tracks", debouncedSearch],
-    () => searchTrack(debouncedSearch),
+    () => searchArtist(debouncedSearch),
     {
       enabled: Boolean(debouncedSearch),
     }
@@ -45,8 +46,11 @@ const Search = () => {
             />
           ) : (
             <div className="flex flex-col md:grid md:grid-cols-3 gap-6">
-              {data?.data?.map((track) => (
-                <MusicCard key={track.id} track={track} />
+              {/* {data?.tracks?.items?.map((track) => ( */}
+              {/*   <TrackCard key={track?.data?.id} track={track?.data} /> */}
+              {/* ))} */}
+              {data?.artists?.items?.map((artist) => (
+                <ArtistCard key={artist?.data?.uri} artist={artist?.data} />
               ))}
             </div>
           )}
