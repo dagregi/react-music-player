@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { getArtistOverview } from "../api/services";
-import AlbumCard from "../components/AlbumCard";
+import AlbumScroll from "../components/AlbumScroll";
 import TrackList from "../components/TrackList";
 
 const ArtistPage = () => {
@@ -50,7 +50,7 @@ const ArtistPage = () => {
       <div className="flex flex-nowrap items-center overflow-x-auto space-x-8 scroll-smooth snap-x snap-mandatory w-full mb-8 px-4 py-5">
         {data?.data?.artist?.discography?.popularReleases?.items?.map(
           (album) => (
-            <AlbumCard
+            <AlbumScroll
               key={album?.releases?.items?.at(0)?.id}
               album={album?.releases?.items?.at(0)}
             />
