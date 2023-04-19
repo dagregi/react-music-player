@@ -1,5 +1,5 @@
 import { AlbumItem, Track } from "./ArtistOverview";
-import { TrackData } from "./SearchResult";
+import { AlbumData, TrackData } from "./SearchResult";
 import { ArtistData } from "./SharedTypes";
 
 export type TrackCardProps = {
@@ -17,6 +17,10 @@ export type ArtistCardProps = {
 };
 
 export type AlbumCardProps = {
+  album: AlbumData;
+};
+
+export type AlbumScrollProps = {
   album: AlbumItem;
 };
 
