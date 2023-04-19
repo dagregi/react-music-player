@@ -13,19 +13,9 @@ export const apiService = axios.create({
   },
 });
 
-export const searchAlbum = (album: string): Promise<SearchResult> =>
+export const search = (query: string, type: string): Promise<SearchResult> =>
   apiService
-    .get<SearchResult>(`/search/?q=${album}&type=albums`)
-    .then((response) => response.data);
-
-export const searchArtist = (artist: string): Promise<SearchResult> =>
-  apiService
-    .get<SearchResult>(`/search/?q=${artist}&type=artists`)
-    .then((response) => response.data);
-
-export const searchTrack = (track: string): Promise<SearchResult> =>
-  apiService
-    .get<SearchResult>(`/search/?q=${track}&type=tracks`)
+    .get<SearchResult>(`/search/?q=${query}&type=${type}`)
     .then((response) => response.data);
 
 export const getAlbums = (albumId: string | undefined): Promise<AlbumData> =>
