@@ -24,20 +24,20 @@ export const convertTime = (miliseconds: number): string => {
 };
 
 export const useOutsideClick = (
-  ref: MutableRefObject<null>,
+  ref: MutableRefObject<HTMLElement>,
   callback: () => void
 ): void => {
-  const handleClick = (event: Event) => {
-    if (ref.current && !ref.current.contains(event.target)) {
+  const handleClick = (event: MouseEvent) => {
+    if (ref.current && !ref.current.contains(event.target as HTMLElement)) {
       callback();
     }
   };
 
   useEffect(() => {
-    document.addEventListener("click", handleClick);
+    document.addEventListener("click", (e) => handleClick(e));
 
     return () => {
-      document.removeEventListener("click", handleClick);
+      document.removeEventListener("click", (e) => handleClick(e));
     };
   });
 };

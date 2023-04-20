@@ -13,7 +13,7 @@ import { useOutsideClick } from "../utils";
 const SideBar = () => {
   const sideRef = useRef(null);
   const [hidden, setHidden] = useState(false);
-  useOutsideClick({ ref: sideRef, callback: () => setHidden(false) });
+  useOutsideClick(sideRef, () => setHidden(false));
   return (
     <section ref={sideRef}>
       <FaBars
