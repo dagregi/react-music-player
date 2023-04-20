@@ -3,15 +3,19 @@ import AlbumPage from "./pages/AlbumPage";
 import ArtistPage from "./pages/ArtistPage";
 import Home from "./pages/Home";
 import Search from "./components/Search";
+import Header from "./components/Header";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/search/:searchTerm" element={<Search />} />
-      <Route path="/album/:albumId" element={<AlbumPage />} />
-      <Route path="/artist/:artistId" element={<ArtistPage />} />
-    </Routes>
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/album/:albumId" element={<AlbumPage />} />
+        <Route path="/artist/:artistId" element={<ArtistPage />} />
+      </Routes>
+    </>
   );
 }
 
