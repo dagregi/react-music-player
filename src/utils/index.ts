@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { MutableRefObject, useEffect, useState } from "react";
 
-export const convertTime = (miliseconds: number) => {
+export const convertTime = (miliseconds: number): string => {
   const duration = ~~(miliseconds / 1000);
 
   const hrs = ~~(duration / 3600);
@@ -21,6 +21,25 @@ export const convertTime = (miliseconds: number) => {
   }
 
   return ret;
+};
+
+export const useOutsideClick = (
+  ref: MutableRefObject<null>,
+  callback: () => void
+): void => {
+  const handleClick = (event: Event) => {
+    if (ref.current && !ref.current.contains(event.target)) {
+      callback();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClick);
+
+    return () => {
+      document.removeEventListener("click", handleClick);
+    };
+  });
 };
 
 export const useDebounce = (value: string, delay: number): string => {
