@@ -6,10 +6,10 @@ import { SearchResult } from "../models/SearchResult";
 
 export const apiService = axios.create({
   method: "GET",
-  baseURL: "https://spotify23.p.rapidapi.com",
+  baseURL: import.meta.env.VITE_APP_BASE_URL,
   headers: {
     "X-RapidAPI-Key": import.meta.env.VITE_APP_API_KEY,
-    "X-RapidAPI-Host": "spotify23.p.rapidapi.com",
+    "X-RapidAPI-Host": import.meta.env.VITE_APP_HOST,
   },
 });
 
