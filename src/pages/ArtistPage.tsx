@@ -12,7 +12,7 @@ const ArtistPage = () => {
 
   return (
     <section className="bg-cat-crust">
-      <div className="flex flex-col max-w-full h-auto bg-gradient-to-b from-cat-surface2 to-transparent">
+      <div className="flex flex-col pt-16 max-w-full h-auto bg-gradient-to-b from-cat-surface2 to-transparent">
         <img
           className="rounded-full w-40 h-40 mx-auto mt-3"
           src={data?.data?.artist?.visuals?.avatarImage?.sources?.at(0)?.url}

@@ -32,7 +32,7 @@ const Search = () => {
   );
 
   return (
-    <section className="max-w-full">
+    <section className="max-w-full mt-32">
       <div className="w-full p-2 border-none bg-cat-crust">
         <div className="container mx-auto p-2">
           <input
@@ -48,9 +48,8 @@ const Search = () => {
           />
           <div className="my-2 w-full flex">
             <button
-              className={`bg-inherit px-3 py-2 outline-none text-center mx-auto text-cat-text rounded-lg text-xs ${
-                album ? " border border-cat-lavender" : ""
-              }`}
+              className={`bg-inherit px-3 py-2 outline-none text-center mx-auto text-cat-text rounded-lg text-xs ${album ? " border border-cat-lavender" : ""
+                }`}
               onClick={() => {
                 setType("albums");
                 setIsClicked({ album: !album, artist: false, track: false });
@@ -59,9 +58,8 @@ const Search = () => {
               Albums
             </button>
             <button
-              className={`bg-inherit px-3 py-2 outline-none text-center mx-auto text-cat-text rounded-lg text-xs ${
-                artist ? " border border-cat-lavender" : ""
-              }`}
+              className={`bg-inherit px-3 py-2 outline-none text-center mx-auto text-cat-text rounded-lg text-xs ${artist ? " border border-cat-lavender" : ""
+                }`}
               onClick={() => {
                 setType("artists");
                 setIsClicked({ album: false, artist: !artist, track: false });
@@ -70,9 +68,8 @@ const Search = () => {
               Artists
             </button>
             <button
-              className={`bg-inherit px-3 py-2 outline-none text-center mx-auto text-cat-text rounded-lg text-xs ${
-                track ? " border border-cat-lavender" : ""
-              }`}
+              className={`bg-inherit px-3 py-2 outline-none text-center mx-auto text-cat-text rounded-lg text-xs ${track ? " border border-cat-lavender" : ""
+                }`}
               onClick={() => {
                 setType("tracks");
                 setIsClicked({ album: false, artist: false, track: !track });
@@ -92,13 +89,13 @@ const Search = () => {
             <div className="flex flex-col md:grid md:grid-cols-3 gap-6">
               {album
                 ? data?.albums?.items?.map((album) => (
-                    <AlbumCard key={album?.data?.id} album={album?.data} />
-                  ))
+                  <AlbumCard key={album?.data?.id} album={album?.data} />
+                ))
                 : artist
-                ? data?.artists?.items?.map((artist) => (
+                  ? data?.artists?.items?.map((artist) => (
                     <ArtistCard key={artist?.data?.uri} artist={artist?.data} />
                   ))
-                : track &&
+                  : track &&
                   data?.tracks?.items?.map((track) => (
                     <TrackCard key={track?.data?.id} track={track?.data} />
                   ))}

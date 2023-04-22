@@ -9,7 +9,7 @@ const AlbumPage = () => {
 
   return (
     <section className="bg-cat-crust text-cat-text">
-      <div className="flex flex-col max-w-full h-auto bg-gradient-to-b from-cat-surface1 to-transparent">
+      <div className="flex flex-col max-w-full pt-16 h-auto bg-gradient-to-b from-cat-surface1 to-transparent">
         <img
           className="w-32 h-32 mx-auto mt-3"
           src={data?.albums?.at(0)?.images?.at(0)?.url}
