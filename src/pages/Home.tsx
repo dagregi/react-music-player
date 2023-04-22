@@ -1,7 +1,11 @@
-import Header from "../components/Header";
+import SongPlayer from "../components/SongPlayer";
 
 const Home = () => {
-  return <section className="bg-cat-crust"></section>;
+  return (
+    <section className="bg-cat-crust">
+      <SongPlayer />
+    </section>
+  );
 };
 
 export default Home;
