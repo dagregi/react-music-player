@@ -11,7 +11,7 @@ import { Link, NavLink } from "react-router-dom";
 import { useOutsideClick } from "../utils";
 
 const SideBar = () => {
-  const sideRef = useRef(null);
+  const sideRef = useRef<HTMLElement>(null);
   const [hidden, setHidden] = useState(false);
   useOutsideClick(sideRef, () => setHidden(false));
   return (
