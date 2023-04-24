@@ -1,5 +1,20 @@
 import { MutableRefObject, useEffect, useState } from "react";
 
+export * from "./PlayerContext";
+
+export const secondsToMinutes = (sec: number | undefined) => {
+  if (!sec) return "00:00";
+  sec = Math.trunc(+sec);
+  const minutes = Math.floor(sec / 60);
+  const seconds = sec % 60;
+
+  return (
+    minutes.toString().padStart(2, "0") +
+    ":" +
+    seconds.toString().padStart(2, "0")
+  );
+};
+
 export const convertTime = (miliseconds: number): string => {
   const duration = ~~(miliseconds / 1000);
 
@@ -24,7 +39,7 @@ export const convertTime = (miliseconds: number): string => {
 };
 
 export const useOutsideClick = (
-  ref: MutableRefObject<HTMLElement>,
+  ref: MutableRefObject<HTMLElement | null>,
   callback: () => void
 ): void => {
   const handleClick = (event: MouseEvent) => {
