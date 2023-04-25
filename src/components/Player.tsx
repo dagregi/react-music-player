@@ -1,6 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import Slider from "rc-slider";
-import "rc-slider/assets/index.css";
 import {
   FaChevronDown,
   FaPause,
@@ -10,7 +8,8 @@ import {
   FaStepBackward,
   FaStepForward,
 } from "react-icons/fa";
-import { secondsToMinutes, usePlayer } from "../utils";
+import { usePlayer } from "../utils";
+import PlayerSlider from "./PlayerSlider";
 
 const Player = () => {
   const [minimized, setMinimized] = useState(true);
@@ -96,27 +95,11 @@ const Player = () => {
         >
           {currentMusic.title}
         </h3>
-        <div className="hidden md:flex w-1/2 flex-col flex-auto gap-1 justify-center mx-2">
-          <Slider
-            trackStyle={{ background: "rgb(126 34 206)" }}
-            handleStyle={{
-              border: "2px solid rgb(126 34 206)",
-              background: "rgb(126 34 206)",
-              boxShadow: "none",
-              opacity: 1,
-            }}
-            min={0}
-            max={currentMusic.duration}
-            value={currentMusic.curTime}
-            onChange={(val) => {
-              audioRef.current!.currentTime = +val;
-            }}
-          />
-          <div className="flex justify-between text-cat-text text-xs">
-            <span>{secondsToMinutes(currentMusic?.curTime)}</span>
-            <span>{secondsToMinutes(currentMusic?.duration)}</span>
-          </div>
-        </div>
+        <PlayerSlider
+          size="md"
+          currentMusic={currentMusic}
+          audioRef={audioRef}
+        />
         <button
           className="flex-none text-center mx-2 md:mx-4"
           onClick={() => {
@@ -162,28 +145,11 @@ const Player = () => {
               {currentMusic.artist}
             </h3>
           </span>
-          <div className="w-full flex flex-col gap-2 justify-center my-2">
-            <Slider
-              trackStyle={{ background: "rgb(126 34 206)" }}
-              handleStyle={{
-                border: "2px solid rgb(126 34 206)",
-                background: "rgb(126 34 206)",
-                boxShadow: "none",
-                opacity: 1,
-              }}
-              min={0}
-              max={currentMusic.duration}
-              value={currentMusic.curTime}
-              onChange={(val) => {
-                audioRef.current!.currentTime = +val;
-              }}
-            />
-
-            <div className="flex justify-between text-cat-text text-xs">
-              <span>{secondsToMinutes(currentMusic?.curTime)}</span>
-              <span>{secondsToMinutes(currentMusic?.duration)}</span>
-            </div>
-          </div>
+          <PlayerSlider
+            size="sm"
+            currentMusic={currentMusic}
+            audioRef={audioRef}
+          />
           <span className="flex flex-row mx-auto text-cat-text py-2 my-4">
             <button onClick={() => skipPrev(currentMusic?.src)}>
               <FaStepBackward className="mx-3 self-center" size={35} />
