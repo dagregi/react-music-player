@@ -33,7 +33,7 @@ const AlbumPage = () => {
           </div>
           <div className="flex gap-1 p-1">
             <h2 className="text-xs text-cat-overlay1">
-              {`${data?.albums?.at(0)?.total_tracks > 1
+              {`${Number(data?.albums?.at(0)?.total_tracks) > 1
                   ? data?.albums?.at(0)?.total_tracks + " songs,"
                   : data?.albums?.at(0)?.total_tracks + " song,"
                 }`}

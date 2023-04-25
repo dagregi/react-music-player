@@ -9,17 +9,11 @@ const TrackList = ({ track, index, page }: TrackListProps) => {
         <h2 className="tracking-tight font-semibold text-cat-subtext1">
           {track?.name}
         </h2>
-        {page === "artist" ? (
-          <p className="font-light text-cat-subtext0">
-            {Number(track?.playcount).toLocaleString()}
-          </p>
-        ) : page === "album" ? (
-          <p className="font-light text-cat-subtext0">
-            {convertTime(track?.duration_ms)}
-          </p>
-        ) : (
-          ""
-        )}
+        <p className="font-light text-cat-subtext0">
+          {page === "artist"
+            ? Number(track?.playcount).toLocaleString()
+            : page === "album" && convertTime(track?.duration_ms)}
+        </p>
       </div>
     </div>
   );
