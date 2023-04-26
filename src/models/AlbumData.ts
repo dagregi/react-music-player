@@ -52,19 +52,19 @@ export type Tracks = {
 };
 
 export type Item = {
-  artists: Artist[];
+  id: string;
+  uri: string;
+  name: string;
   disc_number: number;
   duration_ms: number;
+  is_playable: boolean;
   explicit: boolean;
   external_urls: ExternalUrls;
-  id: string;
   is_local: boolean;
-  is_playable: boolean;
-  name: string;
   preview_url: string;
   track_number: number;
+  artists: Artist[];
   type: ItemType;
-  uri: string;
 };
 
 export enum ItemType {

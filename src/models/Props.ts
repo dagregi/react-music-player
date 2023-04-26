@@ -1,15 +1,16 @@
-import { MutableRefObject } from "react";
+import { RefObject } from "react";
 import { AlbumItem, Track } from "./ArtistOverview";
 import { CurrentMusicType } from "./PlayerTypes";
 import { AlbumData, TrackData } from "./SearchResult";
 import { ArtistData } from "./SharedTypes";
+import { Item } from "./AlbumData";
 
 export type TrackCardProps = {
   track: TrackData;
 };
 
 export type TrackListProps = {
-  track: Track;
+  track: Track | Item;
   index: number;
   page: "artist" | "album";
 };
@@ -17,7 +18,7 @@ export type TrackListProps = {
 export type PlayerSliderProps = {
   size: string;
   currentMusic: CurrentMusicType;
-  audioRef: MutableRefObject<HTMLAudioElement | undefined>;
+  audioRef: RefObject<HTMLAudioElement | undefined>;
 };
 
 export type ArtistCardProps = {

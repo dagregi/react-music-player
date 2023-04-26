@@ -10,3 +10,11 @@ export type PlayerContextType = {
   setCurrentMusic: (cm: Partial<CurrentMusicType>, replace?: boolean) => void;
   playList: Music[];
 };
+
+export const defaultMusic: CurrentMusicType = {
+  isPlaying: false,
+  src: "",
+  artist: "",
+  title: "",
+  cover: "",
+};

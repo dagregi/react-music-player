@@ -1,30 +1,23 @@
 import { createContext, FC, ReactNode, useContext, useState } from "react";
 import Player from "../components/Player";
 import { music } from "../data/data";
-import { CurrentMusicType, PlayerContextType } from "../models/PlayerTypes";
+import {
+  CurrentMusicType,
+  defaultMusic,
+  PlayerContextType,
+} from "../models/PlayerTypes";
 
 const PlayerContext = createContext<PlayerContextType>({
   playList: music,
-  currentMusic: {
-    src: "",
-    title: "",
-    artist: "",
-    isPlaying: false,
-  },
+  currentMusic: defaultMusic,
   setCurrentMusic: () => { },
 });
 
 export const usePlayer = () => useContext(PlayerContext);
 
 export const PlayerProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const [current, setCurrent] = useState<CurrentMusicType>({
-    src: "",
-    title: "",
-    artist: "",
-    isPlaying: false,
-  });
+  const [current, setCurrent] = useState<CurrentMusicType>(defaultMusic);
 
-  //update(volume and play/pause) and replace currentMusic
   const setCurrentMusic = (val: Partial<CurrentMusicType>, replace = false) => {
     if (replace && val.src !== current.src) {
       setCurrent(val as CurrentMusicType);
