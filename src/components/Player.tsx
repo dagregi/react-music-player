@@ -56,7 +56,7 @@ const Player = () => {
     };
   }, [currentMusic.src]);
 
-  const skipNext = (src: string) => {
+  const skipNext = (src: string | undefined) => {
     const idx = playList.findIndex((m) => m.src === src);
 
     // if we are in last music
@@ -68,7 +68,7 @@ const Player = () => {
     }
   };
 
-  const skipPrev = (src: string) => {
+  const skipPrev = (src: string | undefined) => {
     const idx = playList.findIndex((m) => m.src === src);
 
     if (idx === 0) {
@@ -152,7 +152,10 @@ const Player = () => {
           />
           <span className="flex flex-row mx-auto text-cat-text py-2 my-4">
             <button onClick={() => skipPrev(currentMusic?.src)}>
-              <FaStepBackward className="mx-3 self-center" size={35} />
+              <FaStepBackward
+                className="mx-3 fill-cat-subtext1 self-center"
+                size={30}
+              />
             </button>
             <button
               onClick={() => {
@@ -164,13 +167,16 @@ const Player = () => {
               }}
             >
               {currentMusic.isPlaying ? (
-                <FaPauseCircle className="mx-3 self-center" size={50} />
+                <FaPauseCircle className="mx-3 self-center" size={55} />
               ) : (
-                <FaPlayCircle className="mx-3 self-center" size={50} />
+                <FaPlayCircle className="mx-3 self-center" size={55} />
               )}
             </button>
             <button onClick={() => skipNext(currentMusic?.src)}>
-              <FaStepForward className="mx-3 self-center" size={35} />
+              <FaStepForward
+                className="mx-3 fill-cat-subtext1 self-center"
+                size={30}
+              />
             </button>
           </span>
         </div>

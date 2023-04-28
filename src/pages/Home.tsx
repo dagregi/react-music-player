@@ -1,9 +1,9 @@
-import SongPlayer from "../components/SongPlayer";
+import { PlayGround } from "../components/PlayGround";
 
 const Home = () => {
   return (
     <section className="bg-cat-crust">
-      <SongPlayer />
+      <PlayGround />
     </section>
   );
 };
