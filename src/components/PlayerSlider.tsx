@@ -6,11 +6,10 @@ import { PlayerSliderProps } from "../models/Props";
 const PlayerSlider = ({ size, currentMusic, audioRef }: PlayerSliderProps) => {
   return (
     <div
-      className={`${
-        size === "md"
+      className={`${size === "md"
           ? "hidden md:flex w-1/2 flex-col flex-auto gap-1 justify-center mx-2"
           : size === "sm" && "w-full flex flex-col gap-2 justify-center my-2"
-      }`}
+        }`}
     >
       <Slider
         trackStyle={{ background: "#B4BEFE" }}

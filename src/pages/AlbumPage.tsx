@@ -22,7 +22,7 @@ const AlbumPage = () => {
           <div className="p-1 flex flex-row gap-1">
             <img
               className="w-7 h-7 overflow-hidden rounded-full"
-              src={data?.albums?.at(0)?.artists?.at(0)?.name}
+              src={data?.albums?.at(0)?.artists?.at(0)?.uri}
               alt={data?.albums?.at(0)?.artists?.at(0)?.name}
             />
             <Link to={`/artist/${data?.albums?.at(0)?.artists?.at(0)?.id}`}>
@@ -33,10 +33,11 @@ const AlbumPage = () => {
           </div>
           <div className="flex gap-1 p-1">
             <h2 className="text-xs text-cat-overlay1">
-              {`${Number(data?.albums?.at(0)?.total_tracks) > 1
+              {`${
+                Number(data?.albums?.at(0)?.total_tracks) > 1
                   ? data?.albums?.at(0)?.total_tracks + " songs,"
                   : data?.albums?.at(0)?.total_tracks + " song,"
-                }`}
+              }`}
             </h2>
             <h3 className="text-xs text-cat-overlay1">
               {data?.albums?.at(0)?.release_date}

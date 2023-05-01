@@ -15,7 +15,7 @@ const SideBar = () => {
   const [hidden, setHidden] = useState(false);
   useOutsideClick(sideRef, () => setHidden(false));
   return (
-    <section className="overflow-hidden scroll-smooth" ref={sideRef}>
+    <section className="overflow-hidden z-40 scroll-smooth" ref={sideRef}>
       <FaBars
         className={`fill-cat-text my-4 fixed left-3 ${hidden ? " hidden" : " "
           }`}
@@ -23,7 +23,7 @@ const SideBar = () => {
       />
 
       <nav
-        className={`flex flex-col overflow-y-auto fixed inset-y-0 w-3/5 md:w-1/4 min-h-screen items-center bg-opacity-10 backdrop-blur-sm bg-cat-surface0 transform transition-transform z-10 ease-in-out duration-200${hidden ? " translate-x-0" : " -translate-x-full"
+        className={`flex flex-col overflow-y-auto fixed inset-y-0 w-3/5 md:w-1/4 min-h-screen items-center bg-opacity-10 backdrop-blur-sm bg-cat-surface0 transform transition-transform z-40 ease-in-out duration-200${hidden ? " translate-x-0" : " -translate-x-full"
           }`}
       >
         <main className="px-4 py-3 space-y-5 w-full flex flex-col">

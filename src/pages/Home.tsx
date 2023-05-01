@@ -1,11 +1,5 @@
-import { PlayGround } from "../components/PlayGround";
-
 const Home = () => {
-  return (
-    <section className="bg-cat-crust">
-      <PlayGround />
-    </section>
-  );
+  return <section className="bg-cat-crust"></section>;
 };
 
 export default Home;
