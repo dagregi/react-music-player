@@ -1,7 +1,5 @@
 import { MutableRefObject, useEffect, useState } from "react";
 
-export * from "./PlayerContext";
-
 export const secondsToMinutes = (sec: number | undefined) => {
   if (!sec) return "00:00";
   sec = Math.trunc(+sec);

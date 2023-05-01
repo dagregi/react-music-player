@@ -4,16 +4,14 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import "./index.css";
-import { PlayerProvider } from "./utils";
+
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
-        <PlayerProvider>
-          <App />
-        </PlayerProvider>
+        <App />
       </QueryClientProvider>
     </BrowserRouter>
   </React.StrictMode>
