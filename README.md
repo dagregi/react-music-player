@@ -1,11 +1,11 @@
 # Title (WIP)
 
-A spotify clone made by a beginner so expect it to be shit plus it's *react*
+*Stopped working on react and moved to svelte*
 
 ## install
 
 ```bash
-git clone
+git clone https://github.com/dagregi/react-music-player.git
 ```
 
 ### To run the project
